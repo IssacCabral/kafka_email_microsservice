@@ -1,7 +1,7 @@
 version: "3"
 
 networks:
-  study_projects:
+  luby_projects:
     external: true
 
 services:
@@ -14,5 +14,4 @@ services:
     volumes:
       - .:/app
     networks:
-      - study_projects
-  
+      - luby_projects
