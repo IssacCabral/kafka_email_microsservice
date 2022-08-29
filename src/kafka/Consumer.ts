@@ -26,8 +26,6 @@ export default class Consumer{
     }
 
     async run(){
-        const mailer = new Mailer()
-
         await this.consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
                 switch(topic){
@@ -35,7 +33,7 @@ export default class Consumer{
                         // helloWorldConsumer({topic, message})
                         break
                     case 'welcome-email':
-                        new SendWelcomeEmail(message, 'Welcome To Lottery TGL').sendEmail()
+                        new SendWelcomeEmail().sendEmail(message, 'Welcome To Lottery TGL', 'send_welcome_email.ejs')
                         
                         break
                 }
