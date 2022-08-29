@@ -1,5 +1,101 @@
-<%- include ('partials/header.ejs') %>
-    <body>
-        <h1>Olá meu amigo  <%= name %> </h1>
-    </body>
-<%- include ('partials/footer.ejs') %>  
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: white;
+        }
+
+        .container {
+            background-color: #F7F7F7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .container h2 {
+            color: #707070;
+        }
+
+        .container p {
+            color: #868686;
+        }
+
+        .content {
+            padding: 0 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        p.highlight {
+            color: #575246;
+        }
+
+        p.warn {
+            color: #868686;
+            font-size: .7rem;
+        }
+
+        p.title {
+            font-size: 1.2rem;
+        }
+
+        p.token {
+            font-size: .9rem;
+        }
+
+        .sub-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sub-content p {
+            font-size: 1.2rem;
+        }
+
+        button {
+            padding: 1rem 2.4rem;
+            color: #B5C401;
+            font-weight: 500;
+            border-radius: .5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <h2>Welcome to TGL bets, <%= name %>
+            </h2>
+            <p>Now you have the freedom to bet as many times as you like!</p>
+        </div>
+        <div class="sub-content">
+            <p>Click below to login to your account and start betting ;)</p>
+            <a href="">
+                <button>New Bet -></button>
+            </a>
+        </div>
+
+    </div>
+</body>
+
+</html>

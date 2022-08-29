@@ -5,7 +5,6 @@ import env from '../config/env'
 import transporter_config from '../config/transporter_config';
 
 import ejs from 'ejs'
-import path from 'path';
 
 export default class Mailer{
     private transporter: Transporter
@@ -20,7 +19,7 @@ export default class Mailer{
         const data = await ejs.renderFile('/app/src/views/send_welcome_email.ejs', { name: messageToJSON.name});
 
         await this.transporter.sendMail({
-            from: env.SMTP_HOST,
+            from: String(env.SMTP_FROM),
             to: messageToJSON.email,
             subject,
             text: 'Olá meu amigo ' + messageToJSON.name,
