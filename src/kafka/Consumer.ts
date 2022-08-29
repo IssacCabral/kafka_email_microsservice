@@ -1,13 +1,10 @@
 import {Kafka, Consumer as KafkaConsumer, Message, CompressionTypes} from 'kafkajs'
-import KafkaService from './service-kafka'
 
-import helloWorldConsumer from '../handle-consumer/hello-world'
-import SendWelcomeEmail from '../app/services/SendWelcomeEmail'
+import kafka from './kafka-config'
 
-const kafka = new Kafka({
-    clientId: 'api',
-    brokers: ["kafka1:9091"]
-})
+import Mailer from '../app/services/Mailer'
+
+import SendWelcomeEmail from '../handle-consumer/SendWelcomeEmail'
 
 export default class Consumer{
     public consumer: KafkaConsumer
@@ -29,14 +26,17 @@ export default class Consumer{
     }
 
     async run(){
+        const mailer = new Mailer()
+
         await this.consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
                 switch(topic){
                     case 'hello-world': 
-                        helloWorldConsumer({topic, message})
+                        // helloWorldConsumer({topic, message})
                         break
                     case 'welcome-email':
-                        SendWelcomeEmail(message)
+                        new SendWelcomeEmail(message, 'Welcome To Lottery TGL').sendEmail()
+                        
                         break
                 }
             },

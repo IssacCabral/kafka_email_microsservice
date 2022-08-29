@@ -1,18 +1,12 @@
-import express from 'express'
-import env from './app/config/env'
-import { Kafka } from 'kafkajs'
-
-import helloWorldConsumer from './handle-consumer/hello-world'
-
 import Consumer from './kafka/Consumer'
 
+
 (async () => {
-    console.log('ola')
     const consumer = new Consumer()
-    
+    console.log('ola')
     await consumer.connect()
 
-    await consumer.subscribe('hello-world')
+    await consumer.subscribe('welcome-email')
 
     await consumer.run()
 })()
