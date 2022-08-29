@@ -4,6 +4,7 @@ import kafka from './kafka-config'
 
 import SendWelcomeEmail from '../handle-consumer/SendWelcomeEmail'
 import SendNewBetsEmail from '../handle-consumer/SendNewBetsEmail'
+import SendRememberTokenEmail from '../handle-consumer/SendRememberTokenEmail'
 
 export default class Consumer{
     public consumer: KafkaConsumer
@@ -25,10 +26,12 @@ export default class Consumer{
     }
 
     async run(){
+        console.log('to no run')
         await this.consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
                 switch(topic){
                     case 'hello-world': 
+                        console.log('ola mundo')
                         // helloWorldConsumer({topic, message})
                         break
                     case 'welcome-email':
@@ -37,6 +40,15 @@ export default class Consumer{
                     case 'new-bets-email':
                         new SendNewBetsEmail().sendEmail(message, 'Nice for make new Bets', 'send_new_bets_email.ejs')
                         break    
+                    case 'remember-token-email':
+                        console.log('que estranho')
+                        new SendRememberTokenEmail().sendEmail(message, 'Recover Your password', 'send_remember_token_email.ejs')
+                        break
+                    case 'remember-to-bet-email':
+                        // new SendRememberToBetEmail()
+                        break       
+                    default:
+                        console.log('nao passei em nenhum')     
                 }
             },
           })

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New bet</title>
+    <title>Recover Password</title>
 
     <style>
         body {
@@ -100,23 +100,15 @@
 <body>
     <div class="container">
         <div class="content">
-            <h2>Welcome again, <%= name %>! </h2>
-            <p>Your bets have been registered!</p>
+            <h2>Hi, <%= name %>!</h2>
+            <p class="title">Reset password</p>
+            <p class="highlight">A password recovery request has been generated for the email: <%= email %></p>
+            <p class="warn">If you didn't ask for it, contact support and don't click the button below</p>
+            <p class="token highlight">Your token to refresh email: <%= rememberMeToken %></P>
         </div>
-
-        <div class="bet-div">
-            <% gamesInformation.forEach(game => { %>
-                <div class="bet-container" style="border: 2px solid <%= game.color %>;">
-                    <div style="color:<%= game.color %>; font-weight: bold; font-size: 20px;"> <strong> <%= game.type %> </strong> </div>
-                    <div> <%= game.numbers %> </div>
-                </div>
-            <% }) %>
-        </div>
-
-        <p class="highlight">Total price of bets: R$ <%= cartTotalValue %>,00</p>
 
         <div class="sub-content">
-            <p>Click below to place new bets ;)</p>
+            <p>Click below updated your password ;)</p>
             <a href="{{link}}">
                 <button>New bets -></button>
             </a>
