@@ -1,10 +1,9 @@
-import {Kafka, Consumer as KafkaConsumer, Message, CompressionTypes} from 'kafkajs'
+import {Consumer as KafkaConsumer, Message, CompressionTypes} from 'kafkajs'
 
 import kafka from './kafka-config'
 
-import Mailer from '../app/services/Mailer'
-
 import SendWelcomeEmail from '../handle-consumer/SendWelcomeEmail'
+import SendNewBetsEmail from '../handle-consumer/SendNewBetsEmail'
 
 export default class Consumer{
     public consumer: KafkaConsumer
@@ -34,8 +33,10 @@ export default class Consumer{
                         break
                     case 'welcome-email':
                         new SendWelcomeEmail().sendEmail(message, 'Welcome To Lottery TGL', 'send_welcome_email.ejs')
-                        
                         break
+                    case 'new-bets-email':
+                        new SendNewBetsEmail().sendEmail(message, 'Nice for make new Bets', 'send_new_bets_email.ejs')
+                        break    
                 }
             },
           })

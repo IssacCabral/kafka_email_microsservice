@@ -6,7 +6,7 @@ import Consumer from './kafka/Consumer'
     console.log('ola')
     await consumer.connect()
 
-    await consumer.subscribe('welcome-email')
+    await consumer.subscribe('new-bets-email')
 
     await consumer.run()
 })()

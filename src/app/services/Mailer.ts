@@ -11,5 +11,4 @@ export default abstract class Mailer{
     }
 
     abstract sendEmail(message: KafkaMessage, subject: string, fileName: string): Promise<void>
-    
 }
