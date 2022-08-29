@@ -10,8 +10,6 @@ class SendRememberTokenEmail extends Mailer {
     }
 
     async sendEmail(message: KafkaMessage, subject: string, fileName: string): Promise<void> {
-        console.log('to aqui?')
-        //const messageToJSON = JSON.parse(String(message.value!))
         const {name, email, rememberMeToken} = JSON.parse(String(message.value!))
 
         console.log(name, email, rememberMeToken)

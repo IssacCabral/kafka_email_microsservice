@@ -6,7 +6,7 @@ import Consumer from './kafka/Consumer'
 
     await consumer.connect()
 
-    await consumer.subscribe('remember-token-email')
+    await consumer.subscribe('remember-to-bet-email')
 
     await consumer.run()
 })()
