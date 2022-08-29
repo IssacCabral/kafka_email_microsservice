@@ -22,18 +22,16 @@ export default class Consumer{
         await this.consumer.disconnect()
     }
 
-    async subscribe(topic: string){
-        await this.consumer.subscribe({topic, fromBeginning: true})
+    async subscribe(topics: Array<string>){
+        await this.consumer.subscribe({topics, fromBeginning: true})
     }
 
     async run(){
         await this.consumer.run({
             eachMessage: async ({ topic, partition, message }) => {
+                console.log(topic)
+
                 switch(topic){
-                    case 'hello-world': 
-                        console.log('ola mundo')
-                        // helloWorldConsumer({topic, message})
-                        break
                     case 'welcome-email':
                         new SendWelcomeEmail().sendEmail(message, 'Welcome To Lottery TGL', 'send_welcome_email.ejs')
                         break
@@ -41,7 +39,6 @@ export default class Consumer{
                         new SendNewBetsEmail().sendEmail(message, 'Nice for make new Bets', 'send_new_bets_email.ejs')
                         break    
                     case 'remember-token-email':
-                        console.log('que estranho')
                         new SendRememberTokenEmail().sendEmail(message, 'Recover Your password', 'send_remember_token_email.ejs')
                         break
                     case 'remember-to-bet-email':

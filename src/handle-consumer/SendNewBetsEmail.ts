@@ -10,7 +10,6 @@ class SendNewBetsEmail extends Mailer {
     }
 
     async sendEmail(message: KafkaMessage, subject: string, fileName: string): Promise<void> {
-        //const messageToJSON = JSON.parse(String(message.value!))
         const {name, email, cartTotalValue, gamesInformation} = JSON.parse(String(message.value!))
 
         const data = await ejs.renderFile('/app/src/views/' + fileName, { name, email, cartTotalValue, gamesInformation });

@@ -12,8 +12,6 @@ class SendRememberTokenEmail extends Mailer {
     async sendEmail(message: KafkaMessage, subject: string, fileName: string): Promise<void> {
         const {name, email, rememberMeToken} = JSON.parse(String(message.value!))
 
-        console.log(name, email, rememberMeToken)
-
         const data = await ejs.renderFile('/app/src/views/' + fileName, { name, email, rememberMeToken });
 
         await this.transporter.sendMail({
